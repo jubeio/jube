@@ -18,11 +18,13 @@
 # Discover the APP_BASE from the location of this script.
 #
 if [ -z "$APP_BASE" ] ; then
-  APP_BASE=`dirname "$PRG"`
+  DIRNAME=`dirname "$0"`
+  APP_BASE=`cd "$DIRNAME"; pwd`
   export APP_BASE
 fi
 
 export LAUNCH_JBOSS_IN_BACKGROUND=true
 export JBOSS_PIDFILE=process.pid
 
-$APP_BASE/wildfly/bin/standalone.sh
+# REMOVE nohup ONCE standalone.sh IS FIXED!
+nohup $APP_BASE/wildfly/bin/standalone.sh 2>&1 > server.log &
