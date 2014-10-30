@@ -27,7 +27,7 @@
     <version>2.0.0-SNAPSHOT</version>
   </parent>
 
-  <artifactId>war</artifactId>
+  <artifactId>my-test</artifactId>
   <packaging>war</packaging>
 
   <name>Jube :: War</name>
@@ -55,6 +55,11 @@
     <dependency>
       <groupId>org.jboss.weld.servlet</groupId>
       <artifactId>weld-servlet</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.weld</groupId>
+      <artifactId>weld-core</artifactId>
+      <!--version>2.2.5.Final</version-->
     </dependency>
     <dependency>
       <groupId>io.fabric8</groupId>
@@ -107,12 +112,10 @@
         </exclusion>
       </exclusions>
     </dependency>
-<!--
     <dependency>
       <groupId>org.eclipse.jetty</groupId>
-      <artifactId>jetty-webapp</artifactId>
+      <artifactId>jetty-servlet</artifactId>
     </dependency>
--->
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-log4j12</artifactId>
@@ -218,20 +221,13 @@
 
 
       <plugin>
-        <groupId>org.mortbay.jetty</groupId>
+        <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-maven-plugin</artifactId>
-        <version>${jetty-plugin.version}</version>
+        <version>${jetty9.version}</version>
         <configuration>
-          <scanIntervalSeconds>1</scanIntervalSeconds>
-          <useTestScope>true</useTestScope>
-          <systemProperties>
-<!--
-            <systemProperty>
-              <key>karaf.data</key>
-              <value>${project.build.directory}/karaf-data</value>
-            </systemProperty>
--->
-          </systemProperties>
+          <webApp>
+            <contextPath>/</contextPath>
+          </webApp>
         </configuration>
       </plugin>
 
