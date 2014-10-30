@@ -27,7 +27,7 @@ If you have a project which uses [App Zips](http://fabric8.io/v2/appzip.html) th
 To deploy your app into the Wiki in the web console. e.g. if you have a local clone of fabric8 try
 
     cd fabric8/apps/fabric8-mq
-    mvn fabric8:deploy
+    mvn clean install fabric8:deploy -Pjube
 
 Then you should see the Fabric8 MQ application in the wiki [http://localhost:8585/hawtio/wiki/view](http://localhost:8585/hawtio/wiki/view).
 
