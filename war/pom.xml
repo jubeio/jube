@@ -27,7 +27,7 @@
     <version>2.0.0-SNAPSHOT</version>
   </parent>
 
-  <artifactId>my-test</artifactId>
+  <artifactId>war</artifactId>
   <packaging>war</packaging>
 
   <name>Jube :: War</name>
@@ -55,11 +55,12 @@
     <dependency>
       <groupId>org.jboss.weld.servlet</groupId>
       <artifactId>weld-servlet</artifactId>
+      <version>2.2.4.Final</version>
     </dependency>
     <dependency>
       <groupId>org.jboss.weld</groupId>
       <artifactId>weld-core</artifactId>
-      <!--version>2.2.5.Final</version-->
+      <version>2.2.4.Final</version>
     </dependency>
     <dependency>
       <groupId>io.fabric8</groupId>
@@ -135,12 +136,6 @@
       </exclusions>
     </dependency>
 
-<!--
-    <dependency>
-      <groupId>org.jboss.weld.se</groupId>
-      <artifactId>weld-se</artifactId>
-    </dependency>
--->
 
     <!-- testing -->
     <dependency>
