@@ -38,6 +38,7 @@
         <jboss.logging.version>3.1.4.GA</jboss.logging.version>
         <jboss.logmanager.version>1.5.2.Final</jboss.logmanager.version>
         <jboss.remoting.version>4.0.3.Final</jboss.remoting.version>
+        <jboss.sasl.version>1.0.4.Final</jboss.sasl.version>
         <jboss.threads.version>2.1.1.Final</jboss.threads.version>
         <jboss.xnio.version>3.2.2.Final</jboss.xnio.version>
     </properties>
@@ -60,7 +61,7 @@
                             <mainClass>io.jube.images.wildfly.Deployer</mainClass>
                             <addClasspath>true</addClasspath>
                             <classpathLayoutType>custom</classpathLayoutType>
-                            <customClasspathLayout>wildfly/modules/system/layers/base/org/jboss/as/controller-client/main/wildfly-controller-client-${wildfly.version}.jar wildfly/jboss-modules.jar wildfly/modules/system/layers/base/org/jboss/logging/main/jboss-logging-${jboss.logging.version}.jar wildfly/modules/system/layers/base/org/jboss/logmanager/main/jboss-logmanager-${jboss.logging.version}.jar wildfly/modules/system/layers/base/org/jboss/as/protocol//main/wildfly-protocol-${wildfly.version}.jar wildfly/modules/system/layers/base/org/jboss/dmr/main/jboss-dmr-${jboss.dmr.version}.jar wildfly/modules/system/layers/base/org/jboss/remoting/main/jboss-remoting-${jboss.remoting.version}.jar wildfly/modules/system/layers/base/org/jboss/threads/main/jboss-threads-${jboss.threads.version}.jar wildfly/modules/system/layers/base/org/jboss/xnio/main/xnio-api-${jboss.xnio.version}.jar wildfly/modules/system/layers/base/org/jboss/xnio/nio/main/xnio-nio-${jboss.xnio.version}.jar</customClasspathLayout>
+                            <customClasspathLayout>wildfly/modules/system/layers/base/org/jboss/as/controller-client/main/wildfly-controller-client-${wildfly.version}.jar wildfly/modules/system/layers/base/org/jboss/sasl/main/jboss-sasl-${jboss.sasl.version}.jar wildfly/jboss-modules.jar wildfly/modules/system/layers/base/org/jboss/logging/main/jboss-logging-${jboss.logging.version}.jar wildfly/modules/system/layers/base/org/jboss/logmanager/main/jboss-logmanager-${jboss.logging.version}.jar wildfly/modules/system/layers/base/org/jboss/as/protocol//main/wildfly-protocol-${wildfly.version}.jar wildfly/modules/system/layers/base/org/jboss/dmr/main/jboss-dmr-${jboss.dmr.version}.jar wildfly/modules/system/layers/base/org/jboss/remoting/main/jboss-remoting-${jboss.remoting.version}.jar wildfly/modules/system/layers/base/org/jboss/threads/main/jboss-threads-${jboss.threads.version}.jar wildfly/modules/system/layers/base/org/jboss/xnio/main/xnio-api-${jboss.xnio.version}.jar wildfly/modules/system/layers/base/org/jboss/xnio/nio/main/xnio-nio-${jboss.xnio.version}.jar</customClasspathLayout>
                         </manifest>
                     </archive>
                 </configuration>
