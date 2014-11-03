@@ -58,21 +58,27 @@ public class Deployer {
         String timeout = findArg(args, "timeout", "5000");
         Thread.sleep(Integer.parseInt(timeout)); // lets wait for WF to boot up
 
-        ModelControllerClient client;
-        if (username != null && password != null) {
-            System.out.println(String.format("Connecting with %s/%s", username, password));
-            SimpleCallbackHandler.username = username;
-            SimpleCallbackHandler.password = password;
-            client = ModelControllerClient.Factory.create(protocol, address, Integer.parseInt(port), new SimpleCallbackHandler());
-        } else {
-            System.out.println("No auth used.");
-            client = ModelControllerClient.Factory.create(protocol, address, Integer.parseInt(port));
-        }
-        ServerDeploymentManager deploymentManager = ServerDeploymentManager.Factory.create(client);
+        ModelControllerClient client = null;
+        try {
+            if (username != null && password != null) {
+                System.out.println(String.format("Connecting with %s/%s", username, password));
+                SimpleCallbackHandler.username = username;
+                SimpleCallbackHandler.password = password;
+                client = ModelControllerClient.Factory.create(protocol, address, Integer.parseInt(port), new SimpleCallbackHandler());
+            } else {
+                System.out.println("No auth used.");
+                client = ModelControllerClient.Factory.create(protocol, address, Integer.parseInt(port));
+            }
+            ServerDeploymentManager deploymentManager = ServerDeploymentManager.Factory.create(client);
 
-        for (File file : mavenDir.listFiles()) {
-            try (InputStream fs = new FileInputStream(file)) {
-                deploy(deploymentManager, file.getName(), fs);
+            for (File file : mavenDir.listFiles()) {
+                try (InputStream fs = new FileInputStream(file)) {
+                    deploy(deploymentManager, file.getName(), fs);
+                }
+            }
+        } finally {
+            if (client != null) {
+                client.close();
             }
         }
     }
