@@ -37,6 +37,7 @@
     </properties>
 
     <modules>
+        <module>deployer</module>
         <module>default</module>
     </modules>
 </project>

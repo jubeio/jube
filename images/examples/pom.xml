@@ -38,5 +38,6 @@
   <modules>
     <module>camel-cbr</module>
     <module>cxf-cdi</module>
+    <module>hello-servlet</module>
   </modules>
 </project>

@@ -29,3 +29,14 @@ export JBOSS_PIDFILE=process.pid
 
 # REMOVE nohup ONCE standalone.sh IS FIXED!
 nohup $APP_BASE/wildfly/bin/standalone.sh 2>&1 > server.log &
+
+# Setup the JVM
+if [ "x$JAVA" = "x" ]; then
+    if [ "x$JAVA_HOME" != "x" ]; then
+        JAVA="$JAVA_HOME/bin/java"
+    else
+        JAVA="java"
+    fi
+fi
+
+$JAVA -jar deployer.jar $APP_BASE
