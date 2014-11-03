@@ -316,7 +316,7 @@ public final class NodeHelper {
     public static void appendServiceEnvironmentVariables(Map<String, String> map, KubernetesModel model) {
         ImmutableSet<Map.Entry<String, ServiceSchema>> entries = model.getServiceMap().entrySet();
         for (Map.Entry<String, ServiceSchema> entry : entries) {
-            String id = entry.getKey().toUpperCase();
+            String id = entry.getKey().toUpperCase().replaceAll("-", "_");
             String envVarPrefix = id + "_SERVICE_";
             ServiceSchema service = entry.getValue();
 
