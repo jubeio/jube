@@ -347,8 +347,13 @@ public class BuildMojo extends AbstractMojo {
     }
 
     private AssemblerConfigurationSource createAssemblyConfigurationSource(String descriptor, String descriptorRef) {
-        String[] descriptors = descriptor != null ? new String[]{descriptor} : null;
-        String[] descriptorRefs = descriptorRef != null ? new String[]{descriptorRef} : null;
+        String[] descriptors = null;
+        String[] descriptorRefs = null;
+        if (descriptor != null) {
+            descriptors = new String[]{descriptor};
+        } else if (descriptorRef != null) {
+            descriptorRefs = new String[]{descriptorRef};
+        }
         return new JubeArchiveConfigurationSource(project, session, archive, mavenFileFilter, descriptors, descriptorRefs);
     }
 
