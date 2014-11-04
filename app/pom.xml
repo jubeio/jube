@@ -22,7 +22,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.jboss.jube</groupId>
+    <groupId>io.fabric8.jube</groupId>
     <artifactId>parent-project</artifactId>
     <version>2.0.0-SNAPSHOT</version>
   </parent>
@@ -38,7 +38,7 @@
 
     <!-- jube properties -->
     <docker.baseImage>fabric8/java</docker.baseImage>
-    <docker.env.MAIN>org.jboss.jube.main.Main</docker.env.MAIN>
+    <docker.env.MAIN>io.fabric8.jube.main.Main</docker.env.MAIN>
 
     <!-- configure hawtio -->
     <docker.env.hawtio_authenticationEnabled>false</docker.env.hawtio_authenticationEnabled>
@@ -46,7 +46,7 @@
 
   <dependencies>
     <dependency>
-      <groupId>org.jboss.jube</groupId>
+      <groupId>io.fabric8.jube</groupId>
       <artifactId>node</artifactId>
       <version>${project.version}</version>
       <exclusions>
@@ -57,7 +57,7 @@
       </exclusions>
     </dependency>
     <dependency>
-      <groupId>org.jboss.jube</groupId>
+      <groupId>io.fabric8.jube</groupId>
       <artifactId>core</artifactId>
       <version>${project.version}</version>
     </dependency>
@@ -70,7 +70,7 @@
       <artifactId>kubernetes-template</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.jboss.jube</groupId>
+      <groupId>io.fabric8.jube</groupId>
       <artifactId>process-manager</artifactId>
       <version>${project.version}</version>
     </dependency>
@@ -226,7 +226,7 @@
             </goals>
             <configuration>
               <classResourceNames>
-                <classResourceName>org.jboss.jube.apimaster.ApiMasterService</classResourceName>
+                <classResourceName>io.fabric8.jube.apimaster.ApiMasterService</classResourceName>
               </classResourceNames>
               <attachWadl>false</attachWadl>
             </configuration>
@@ -257,7 +257,7 @@
           <mergeData>true</mergeData>
           <assemblyDescriptorRef>artifact-with-dependencies</assemblyDescriptorRef>
           <env>
-            <MAIN>org.jboss.jube.main.Main</MAIN>
+            <MAIN>io.fabric8.jube.main.Main</MAIN>
           </env>
         </configuration>
       </plugin>
@@ -267,7 +267,7 @@
         <artifactId>exec-maven-plugin</artifactId>
         <version>${exec.maven.plugin.version}</version>
         <configuration>
-          <mainClass>org.jboss.jube.main.Main</mainClass>
+          <mainClass>io.fabric8.jube.main.Main</mainClass>
           <includePluginDependencies>false</includePluginDependencies>
         </configuration>
       </plugin>
@@ -290,7 +290,7 @@
       </plugin>
 
       <plugin>
-        <groupId>org.jboss.jube</groupId>
+        <groupId>io.fabric8.jube</groupId>
         <artifactId>jube-maven-plugin</artifactId>
         <version>${project.version}</version>
         <executions>
@@ -328,7 +328,7 @@
               </dependency>
 -->
               <dependency>
-                <groupId>org.jboss.jube</groupId>
+                <groupId>io.fabric8.jube</groupId>
                 <artifactId>console</artifactId>
                 <version>${project.version}</version>
                 <type>war</type>
@@ -367,7 +367,7 @@
         </dependency>
           -->
         <dependency>
-          <groupId>org.jboss.jube</groupId>
+          <groupId>io.fabric8.jube</groupId>
           <artifactId>console</artifactId>
           <version>${project.version}</version>
           <type>war</type>

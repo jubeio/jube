@@ -22,7 +22,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.jboss.jube</groupId>
+    <groupId>io.fabric8.jube</groupId>
     <artifactId>parent-project</artifactId>
     <version>2.0.0-SNAPSHOT</version>
   </parent>
@@ -42,7 +42,7 @@
     <!-- jube properties -->
 <!--
     <docker.baseImage>fabric8/java</docker.baseImage>
-    <docker.env.MAIN>org.jboss.jube.main.Main</docker.env.MAIN>
+    <docker.env.MAIN>io.fabric8.jube.main.Main</docker.env.MAIN>
 -->
 
     <!-- configure hawtio -->
@@ -74,7 +74,7 @@
     </dependency>
 
     <dependency>
-      <groupId>org.jboss.jube</groupId>
+      <groupId>io.fabric8.jube</groupId>
       <artifactId>node</artifactId>
       <version>${project.version}</version>
       <exclusions>
@@ -93,12 +93,12 @@
       </exclusions>
     </dependency>
     <dependency>
-      <groupId>org.jboss.jube</groupId>
+      <groupId>io.fabric8.jube</groupId>
       <artifactId>core</artifactId>
       <version>${project.version}</version>
     </dependency>
     <dependency>
-      <groupId>org.jboss.jube</groupId>
+      <groupId>io.fabric8.jube</groupId>
       <artifactId>process-manager</artifactId>
       <version>${project.version}</version>
       <exclusions>
@@ -182,7 +182,7 @@
             </goals>
             <configuration>
               <classResourceNames>
-                <classResourceName>org.jboss.jube.apimaster.ApiMasterService</classResourceName>
+                <classResourceName>io.fabric8.jube.apimaster.ApiMasterService</classResourceName>
               </classResourceNames>
               <attachWadl>false</attachWadl>
             </configuration>
