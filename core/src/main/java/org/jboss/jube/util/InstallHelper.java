@@ -57,10 +57,8 @@ public final class InstallHelper {
         }
         chmodScripts(installDir, DEFAULT_MATCHER);
 
-        File binDir = new File(installDir, "bin");
-        if (binDir.exists()) {
-            chmodScripts(binDir, DEFAULT_MATCHER);
-        }
+        // all bin directories (also in sub directories) should have their bin scripts as executable
+        chmodBinScriptsRecursive(installDir);
 
         File executables = new File(installDir, "executables.properties");
         if (executables.exists()) {
@@ -94,6 +92,25 @@ public final class InstallHelper {
                         file.setExecutable(true);
                     }
                 }
+            }
+        }
+    }
+
+    /**
+     * Lets make sure all the shell scripts are executable in all <tt>bin</tt> directories
+     * <p/>
+     * For example the karaf image has a bin directory with karaf bin scripts we need to ensure are executable
+     */
+    public static void chmodBinScriptsRecursive(File dir) {
+        // check children
+        File[] dirs = dir.listFiles();
+        if (dirs != null && dirs.length > 0) {
+            for (File child : dirs) {
+                if ("bin".equals(child.getName())) {
+                    chmodScripts(child, DEFAULT_MATCHER);
+                }
+                // recursive
+                chmodBinScriptsRecursive(child);
             }
         }
     }
@@ -186,7 +203,12 @@ public final class InstallHelper {
         public boolean match(File file) {
             String name = file.getName();
             String extension = Files.getFileExtension(name);
-            return Objects.equal(name, "launcher") || Objects.equal(extension, "sh") || Objects.equal(extension, "bat") || Objects.equal(extension, "cmd");
+            if (extension != null) {
+                return Objects.equal(name, "launcher") || Objects.equal(extension, "sh") || Objects.equal(extension, "bat") || Objects.equal(extension, "cmd");
+            } else {
+                // assume no extension is a script file (Apache Karaf does that unfortunately)
+                return true;
+            }
         }
 
     }
