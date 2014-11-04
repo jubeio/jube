@@ -9,7 +9,7 @@ Jube tries to [reuse as much of the metadata](goals.html) for building docker im
 To enable this maven plugin and to automatically generate an [Image Zip](imageZips.html) as part of your build
 
       <plugin>
-        <groupId>org.jboss.jube</groupId>
+        <groupId>io.fabric8.jube</groupId>
         <artifactId>jube-maven-plugin</artifactId>
         <version>${jube.version}</version>
         <executions>

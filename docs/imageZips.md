@@ -12,7 +12,7 @@ Jube then maps those docker image names to be Maven coordinates of Image Zips.
 
 e.g. the docker container name **fabric8/java:version** is mapped to be
 
-* group ID **org.jboss.jube.images.fabric8** (i.e. adding the _org.jboss.jube.images._ prefix to the docker user name)
+* group ID **io.fabric8.jube.images.fabric8** (i.e. adding the _org.jboss.jube.images._ prefix to the docker user name)
 * artifact Id: **java**
 * version is the version specified or defaults to the latest one
 * classifier: **image**

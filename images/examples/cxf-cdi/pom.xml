@@ -22,7 +22,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.jboss.jube.images.examples</groupId>
+    <groupId>io.fabric8.jube.images.examples</groupId>
     <artifactId>parent-project</artifactId>
     <version>2.0.0-SNAPSHOT</version>
   </parent>
@@ -267,7 +267,7 @@
       </plugin>
 
       <plugin>
-        <groupId>org.jboss.jube</groupId>
+        <groupId>io.fabric8.jube</groupId>
         <artifactId>jube-maven-plugin</artifactId>
         <version>${project.version}</version>
         <executions>
