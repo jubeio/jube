@@ -229,6 +229,12 @@
           <webApp>
             <contextPath>/</contextPath>
           </webApp>
+          <systemProperties>
+            <systemProperty>
+              <key>hawtio.config.dir</key>
+              <value>${basedir}/target/hawtioConfig</value>
+            </systemProperty>
+          </systemProperties>
         </configuration>
       </plugin>
 

@@ -35,7 +35,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.jboss.jube.images.wildfly</groupId>
+            <groupId>io.fabric8.jube.images.wildfly</groupId>
             <artifactId>deployer</artifactId>
             <version>${project.version}</version>
         </dependency>
