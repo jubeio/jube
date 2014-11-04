@@ -51,7 +51,7 @@
         <artifactId>maven-dependency-plugin</artifactId>
         <executions>
           <execution>
-            <id>prepare-runtime</id>
+            <id>unpack-karaf</id>
             <goals>
               <goal>unpack-dependencies</goal>
             </goals>

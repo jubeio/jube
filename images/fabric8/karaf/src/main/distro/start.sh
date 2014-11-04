@@ -26,5 +26,7 @@ fi
 
 source ${APP_BASE}/env.sh
 
+$APP_BASE/deploy.sh
+
 $APP_BASE/bin/start
 

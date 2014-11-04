@@ -32,6 +32,9 @@
     <fileSet>
       <directory>target/dependency/apache-karaf-${karaf.version}</directory>
       <outputDirectory>/</outputDirectory>
+      <excludes>
+        <exclude>demos/**</exclude>
+      </excludes>
     </fileSet>
   </fileSets>
   <dependencySets>
