@@ -16,16 +16,34 @@
 package io.jube.examples.hello;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class HelloServlet extends HttpServlet {
+    private static final String CLUSTERED = "CLUSTERED";
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.getWriter().write("Hello " + req.getParameter("name") + "!");
+        PrintWriter writer = resp.getWriter();
+
+        writer.write("Hello " + req.getParameter("name") + "!\n\n");
+
+        HttpSession session = req.getSession();
+
+        String clustered = req.getParameter("set_clustered");
+        if (clustered != null) {
+            session.setAttribute(CLUSTERED, clustered);
+            writer.write("Clustered SET: " + session.getAttribute(CLUSTERED));
+        }
+
+        clustered = req.getParameter("get_clustered");
+        if (clustered != null) {
+            writer.write("Clustered GET: " + session.getAttribute(CLUSTERED));
+        }
     }
 }
