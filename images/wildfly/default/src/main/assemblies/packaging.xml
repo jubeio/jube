@@ -46,6 +46,10 @@
     </fileSets>
     <files>
         <file>
+            <source>src/main/configuration/standalone-jube.xml</source>
+            <outputDirectory>/wildfly/standalone/configuration</outputDirectory>
+        </file>
+        <file>
             <source>../deployer/target/deployer-${project.version}.jar</source>
             <outputDirectory>/</outputDirectory>
             <destName>deployer.jar</destName>
