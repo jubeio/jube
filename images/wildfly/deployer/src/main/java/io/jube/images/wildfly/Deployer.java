@@ -51,7 +51,7 @@ public final class Deployer {
 
         String protocol = findArg(args, "wildfly.protocol", "http-remoting");
         String address = findArg(args, "wildfly.address", "127.0.0.1");
-        String port = findArg(args, "wildfly.port", "9990");
+        String port = findArg(args, "wildfly.port", System.getenv("MANAGEMENT_PORT"));
 
         String username = findArg(args, "wildfly.username", null);
         String password = findArg(args, "wildfly.password", null);

@@ -1,3 +1,4 @@
+#!/bin/sh
 #
 #  Copyright 2005-2014 Red Hat, Inc.
 #
