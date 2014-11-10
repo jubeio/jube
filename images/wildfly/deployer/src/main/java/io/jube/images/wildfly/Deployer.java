@@ -41,7 +41,12 @@ public final class Deployer {
 
     public static void main(String[] args) throws Throwable {
         if (args == null || args.length == 0) {
-            throw new IllegalArgumentException("Missing arguments!");
+            String app_base = System.getenv("APP_BASE");
+            if (app_base == null) {
+                throw new IllegalArgumentException("Missing arguments and no $APP_BASE exported!");
+            }
+            args = new String[1];
+            args[0] = app_base;
         }
 
         File rootDir = new File(args[0]);
@@ -61,7 +66,7 @@ public final class Deployer {
         int sleep = Integer.parseInt(findArg(args, "sleep", "3000"));
         Thread.sleep(sleep); // lets wait for WF to boot up
 
-        int timeout = Integer.parseInt(findArg(args, "timeout", "15000"));
+        int timeout = Integer.parseInt(findArg(args, "timeout", String.valueOf(60 * 1000)));
 
         ModelControllerClient client = null;
         try {

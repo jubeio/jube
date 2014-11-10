@@ -39,4 +39,4 @@ if [ "x$JAVA" = "x" ]; then
     fi
 fi
 
-$JAVA -jar deployer.jar $APP_BASE
+$JAVA -jar deployer.jar
