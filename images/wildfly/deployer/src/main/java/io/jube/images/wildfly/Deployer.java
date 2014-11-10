@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.concurrent.Future;
 
 import org.jboss.as.controller.client.ModelControllerClient;
+import org.jboss.as.controller.client.ModelControllerClientConfiguration;
 import org.jboss.as.controller.client.helpers.standalone.AddDeploymentPlanBuilder;
 import org.jboss.as.controller.client.helpers.standalone.DeploymentAction;
 import org.jboss.as.controller.client.helpers.standalone.DeploymentPlan;
@@ -30,6 +31,7 @@ import org.jboss.as.controller.client.helpers.standalone.DeploymentPlanBuilder;
 import org.jboss.as.controller.client.helpers.standalone.ServerDeploymentActionResult;
 import org.jboss.as.controller.client.helpers.standalone.ServerDeploymentManager;
 import org.jboss.as.controller.client.helpers.standalone.ServerDeploymentPlanResult;
+import org.jboss.as.controller.client.impl.ClientConfigurationImpl;
 
 public final class Deployer {
 
@@ -51,25 +53,27 @@ public final class Deployer {
 
         String protocol = findArg(args, "wildfly.protocol", "http-remoting");
         String address = findArg(args, "wildfly.address", "127.0.0.1");
-        String port = findArg(args, "wildfly.port", System.getenv("MANAGEMENT_PORT"));
+        int port = Integer.parseInt(findArg(args, "wildfly.port", System.getenv("MANAGEMENT_PORT")));
 
         String username = findArg(args, "wildfly.username", null);
         String password = findArg(args, "wildfly.password", null);
 
-        String timeout = findArg(args, "timeout", "5000");
-        Thread.sleep(Integer.parseInt(timeout)); // lets wait for WF to boot up
+        int sleep = Integer.parseInt(findArg(args, "sleep", "3000"));
+        Thread.sleep(sleep); // lets wait for WF to boot up
+
+        int timeout = Integer.parseInt(findArg(args, "timeout", "15000"));
 
         ModelControllerClient client = null;
         try {
+            ModelControllerClientConfiguration configuration;
             if (username != null && password != null) {
                 System.out.println(String.format("Connecting with %s/%s", username, password));
-                SimpleCallbackHandler.username = username;
-                SimpleCallbackHandler.password = password;
-                client = ModelControllerClient.Factory.create(protocol, address, Integer.parseInt(port), new SimpleCallbackHandler());
+                configuration = ClientConfigurationImpl.create(protocol, address, port, new SimpleCallbackHandler(username, password), null, timeout);
             } else {
                 System.out.println("No auth used.");
-                client = ModelControllerClient.Factory.create(protocol, address, Integer.parseInt(port));
+                configuration = ClientConfigurationImpl.create(protocol, address, port, null, null, timeout);
             }
+            client = ModelControllerClient.Factory.create(configuration);
             ServerDeploymentManager deploymentManager = ServerDeploymentManager.Factory.create(client);
 
             File[] files = mavenDir.listFiles();

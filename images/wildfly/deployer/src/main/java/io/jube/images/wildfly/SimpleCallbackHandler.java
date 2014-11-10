@@ -25,8 +25,13 @@ import javax.security.auth.callback.UnsupportedCallbackException;
 import javax.security.sasl.RealmCallback;
 
 public class SimpleCallbackHandler implements CallbackHandler {
-    static String username;
-    static String password;
+    private String username;
+    private String password;
+
+    public SimpleCallbackHandler(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 
     public void handle(Callback[] callbacks) throws IOException, UnsupportedCallbackException {
         for (Callback current : callbacks) {
