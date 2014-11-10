@@ -47,7 +47,7 @@ public final class Deployer {
         File rootDir = new File(args[0]);
         File mavenDir = new File(rootDir, "maven");
         if (!mavenDir.exists()) {
-            System.out.println("No maven dir, nothing to deploy.");
+            System.out.println(String.format("No maven dir [%s], nothing to deploy.", mavenDir));
             return;
         }
 
