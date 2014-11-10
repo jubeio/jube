@@ -270,7 +270,7 @@
         </subsystem>
         <subsystem xmlns="urn:jboss:domain:jdr:1.0"/>
         <subsystem xmlns="urn:jboss:domain:jgroups:2.0" default-stack="udp">
-            <!-- stack name="udp">
+            <stack name="udp">
                 <transport type="UDP" socket-binding="jgroups-udp"/>
                 <protocol type="PING"/>
                 <protocol type="MERGE3"/>
@@ -285,7 +285,7 @@
                 <protocol type="MFC"/>
                 <protocol type="FRAG2"/>
                 <protocol type="RSVP"/>
-            </stack -->
+            </stack>
             <stack name="tcp">
                 <transport type="TCP" socket-binding="jgroups-tcp"/>
                 <protocol type="MPING" socket-binding="jgroups-mping"/>
@@ -363,7 +363,7 @@
                     <uuid/>
                 </process-id>
             </core-environment>
-            <!-- recovery-environment socket-binding="txn-recovery-environment" status-socket-binding="txn-status-manager"/ -->
+            <recovery-environment socket-binding="txn-recovery-environment" status-socket-binding="txn-status-manager"/>
         </subsystem>
         <subsystem xmlns="urn:jboss:domain:undertow:1.1">
             <buffer-cache name="default"/>
@@ -420,15 +420,15 @@
         <!-- socket-binding name="management-https" interface="management" port="${jboss.management.https.port:9993}"/ -->
         <!-- socket-binding name="ajp" port="${jboss.ajp.port:8009}"/ -->
         <socket-binding name="http" port="${env.HTTP_PORT}"/>
-        <!-- socket-binding name="https" port="${jboss.https.port:8443}"/ -->
-        <socket-binding name="jgroups-mping" port="0" multicast-address="${jboss.default.multicast.address:230.0.0.4}" multicast-port="${env.MULTICAST}"/>
-        <socket-binding name="jgroups-tcp" port="${env.TCP}"/>
-        <socket-binding name="jgroups-tcp-fd" port="${env.TCP_FD}"/>
-        <!-- socket-binding name="jgroups-udp" port="55200" multicast-address="${jboss.default.multicast.address:230.0.0.4}" multicast-port="45688"/>
-        <socket-binding name="jgroups-udp-fd" port="54200"/ -->
+        <socket-binding name="https" port="${env.HTTPS_PORT}"/>
+        <socket-binding name="jgroups-mping" port="0" multicast-address="${jboss.default.multicast.address:230.0.0.4}" multicast-port="${env.PING_MULTICAST_PORT}"/>
+        <socket-binding name="jgroups-tcp" port="${env.TCP_PORT}"/>
+        <socket-binding name="jgroups-tcp-fd" port="${env.TCP_FD_PORT}"/>
+        <socket-binding name="jgroups-udp" port="${env.UDP_PORT}" multicast-address="${jboss.default.multicast.address:230.0.0.4}" multicast-port="${env.UDP_MULTICAST_PORT}"/>
+        <socket-binding name="jgroups-udp-fd" port="${env.UDP_FD_PORT}"/>
         <!-- socket-binding name="modcluster" port="0" multicast-address="224.0.1.105" multicast-port="23364"/ -->
-        <!-- socket-binding name="txn-recovery-environment" port="4712"/>
-        <socket-binding name="txn-status-manager" port="4713"/ -->
+        <socket-binding name="txn-recovery-environment" port="${env.TXN_RECOVERY_ENV_PORT}"/>
+        <socket-binding name="txn-status-manager" port="${env.TXN_STATUS_MANAGER_PORT}" />
         <outbound-socket-binding name="mail-smtp">
             <remote-destination host="localhost" port="25"/>
         </outbound-socket-binding>
