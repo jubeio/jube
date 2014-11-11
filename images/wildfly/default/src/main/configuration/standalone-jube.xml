@@ -421,10 +421,10 @@
         <!-- socket-binding name="ajp" port="${jboss.ajp.port:8009}"/ -->
         <socket-binding name="http" port="${env.HTTP_PORT}"/>
         <socket-binding name="https" port="${env.HTTPS_PORT}"/>
-        <socket-binding name="jgroups-mping" port="0" multicast-address="${jboss.default.multicast.address:230.0.0.4}" multicast-port="${env.PING_MULTICAST_PORT}"/>
+        <socket-binding name="jgroups-mping" port="0" multicast-address="${jboss.default.multicast.address:230.0.0.4}" multicast-port="45700"/>
         <socket-binding name="jgroups-tcp" port="${env.TCP_PORT}"/>
         <socket-binding name="jgroups-tcp-fd" port="${env.TCP_FD_PORT}"/>
-        <socket-binding name="jgroups-udp" port="${env.UDP_PORT}" multicast-address="${jboss.default.multicast.address:230.0.0.4}" multicast-port="${env.UDP_MULTICAST_PORT}"/>
+        <socket-binding name="jgroups-udp" port="${env.UDP_PORT}" multicast-address="${jboss.default.multicast.address:230.0.0.4}" multicast-port="45688"/>
         <socket-binding name="jgroups-udp-fd" port="${env.UDP_FD_PORT}"/>
         <!-- socket-binding name="modcluster" port="0" multicast-address="224.0.1.105" multicast-port="23364"/ -->
         <socket-binding name="txn-recovery-environment" port="${env.TXN_RECOVERY_ENV_PORT}"/>

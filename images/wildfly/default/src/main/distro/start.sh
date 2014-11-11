@@ -28,7 +28,7 @@ export LAUNCH_JBOSS_IN_BACKGROUND=true
 export JBOSS_PIDFILE=process.pid
 
 # REMOVE nohup ONCE standalone.sh IS FIXED!
-nohup $APP_BASE/wildfly/bin/standalone.sh -c standalone-jube.xml -Djboss.node.name=node$NODE_ID_PORT -Djboss.server.data.dir=$APP_BASE/wildfly/standalone/data$NODE_ID_PORT -Djboss.server.temp.dir=$APP_BASE/wildfly/standalone/tmp$NODE_ID_PORT 2>&1 > server.log &
+nohup $APP_BASE/wildfly/bin/standalone.sh -c standalone-jube.xml -Djboss.node.name=node$NODE_ID_PORT 2>&1 > server.log &
 
 # Setup the JVM
 if [ "x$JAVA" = "x" ]; then
