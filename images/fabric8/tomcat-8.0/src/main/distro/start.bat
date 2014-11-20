@@ -25,9 +25,15 @@ if "%APP_BASE%" == "" (
   set APP_BASE=%CD%
 )
 
+rem get current dir name only (which is a bit odd way to do in windows bat)
+rem which we will use as agent id (as the dirname is unique)
+for %%a in (.) do set APP_BASENAME=%%~na
+
 call %APP_BASE%\env.bat
 
 call %APP_BASE%\deploy.bat
 
+rem use unique name in title so we can find it in the tasklist
+set TITLE=%APP_BASENAME%
 call %APP_BASE%\bin\catalina.bat start
 
