@@ -18,5 +18,5 @@ rem
 rem deploy WAR files
 
 if exist %APP_BASE%/maven (
-  xcopy %APP_BASE%/maven/*.war %APP_BASE%/webapps/
+  xcopy /y %APP_BASE%\maven\*.war %APP_BASE%\webapps > NUL
 )

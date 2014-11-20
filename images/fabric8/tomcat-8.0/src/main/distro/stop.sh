@@ -24,5 +24,5 @@ if [ -z "$APP_BASE" ] ; then
   export APP_BASE
 fi
 
-$APP_BASE/bin/catalina.sh stop 30
+$APP_BASE/bin/catalina.sh stop
 

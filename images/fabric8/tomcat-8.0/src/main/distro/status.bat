@@ -27,7 +27,7 @@ if "%APP_BASE%" == "" (
 
 call %APP_BASE%\env.bat
 
-set PID_FILE=process.pid
+set PID_FILE=%APP_BASE%\process.pid
 
 if not exist %PID_FILE% (
   echo Tomcat is stopped

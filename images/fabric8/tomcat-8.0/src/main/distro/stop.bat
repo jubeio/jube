@@ -27,5 +27,5 @@ if "%APP_BASE%" == "" (
 
 call %APP_BASE%\env.bat
 
-call %APP_BASE%\bin\catalina.bat stop 30
+call %APP_BASE%\bin\catalina.bat stop
 
