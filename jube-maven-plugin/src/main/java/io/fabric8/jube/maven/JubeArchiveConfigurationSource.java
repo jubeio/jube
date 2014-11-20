@@ -55,7 +55,7 @@ public class JubeArchiveConfigurationSource implements AssemblerConfigurationSou
     // ============================================================================================
 
     public File getOutputDirectory() {
-        return new File(project.getBasedir(), "target/jube");
+        return new File(project.getBasedir(), "target/jube-out");
     }
 
     public File getWorkingDirectory() {
