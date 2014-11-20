@@ -15,25 +15,23 @@ rem  implied.  See the License for the specific language governing
 rem  permissions and limitations under the License.
 rem
 
-rem
-rem Discover the APP_BASE from the location of this script.
-rem
+rem to get the status of a pid
 
-setlocal
+rem clear variables first
+set PID_STATUS=No
+set PID=
 
-if "%APP_BASE%" == "" (
-  set APP_BASE=%CD%
+if not exist %PID_FILE% (
+  goto :END
 )
 
-call %APP_BASE%\env.bat
-
-call %APP_BASE%\pidstatus.bat
-
-if "%PID_STATUS%" == "No" (
-  echo Tomcat is stopped
+set /p PID_TMP=<%PID_FILE%
+if not "%PID_TMP%" == "" (
+  set PID=%PID_TMP%
+  for /F "tokens=2 delims= " %%A in ('TASKLIST /FI "PID eq %PID_TMP%" /NH') do set PID_STATUS=%%A
 ) else (
-  echo Tomcat is running: PID=%PID%
+  set PID=
 )
+set PID_TMP=
 
 :END
-

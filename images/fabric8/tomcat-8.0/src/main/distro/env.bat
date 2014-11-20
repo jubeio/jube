@@ -25,6 +25,8 @@ if not defined JOLOKIA_PORT set JOLOKIA_PORT=8778
 if not defined TOMCAT_USERNAME set TOMCAT_USERNAME=admin
 if not defined TOMCAT_PASSWORD set TOMCAT_PASSWORD=admin
 
+set PID_FILE=%APP_BASE%\process.pid
+
 if "%CATALINA_OPTS%" == "" (
   set CATALINA_OPTS=-DhttpPort=%HTTP_PORT% -DshutdownPort=%SHUTDOWN_PORT% -javaagent:jolokia-agent.jar=host=0.0.0.0,port=%JOLOKIA_PORT%,user=%TOMCAT_USERNAME%,password=%TOMCAT_PASSWORD%
 ) else (

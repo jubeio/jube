@@ -37,3 +37,22 @@ rem use unique name in title so we can find it in the tasklist
 set TITLE=%APP_BASENAME%
 call %APP_BASE%\bin\catalina.bat start
 
+rem see if we got started
+timeout /T 2 > NUL
+for /F "tokens=2 delims= " %%A in ('tasklist /FI "WINDOWTITLE eq %APP_BASENAME%" /NH') do set PID=%%A
+if "%PID%" == "No" (
+   echo Could not start Tomcat
+   goto :END1
+)
+echo Tomcat is now running: PID=%PID%
+
+rem write PID to pid file
+echo %PID% > %PID_FILE%
+
+goto :END
+
+:END1
+set ERROR_CODE=1
+
+:END
+

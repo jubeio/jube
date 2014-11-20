@@ -188,7 +188,7 @@ goto :USAGE
   timeout /T 2 > NUL
   for /F "tokens=2 delims= " %%A in ('tasklist /FI "WINDOWTITLE eq %APP_BASENAME%" /NH') do set PID=%%A
   if "%PID%" == "No" (
-     echo "Could not start %SERVICE_NAME%"
+     echo Could not start %SERVICE_NAME%
      goto :END1
   )
   echo %SERVICE_NAME% is now running: PID=%PID%
