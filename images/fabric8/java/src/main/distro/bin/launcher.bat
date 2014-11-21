@@ -54,11 +54,12 @@ rem get current dir name only (which is a bit odd way to do in windows bat)
 rem which we will use as agent id (as the dirname is unique)
 for %%a in (.) do set APP_BASENAME=%%~na
 
+if "%AGENT_ID%" == "" (
+  set AGENT_ID=%APP_BASENAME%
+)
+
 if not "%JOLOKIA_PORT%" == "" (
-  if "%AGENT_ID%" == "" (
-    set AGENT_ID=%APP_BASENAME%
-  )
-  set JOLOKIA_ARGS=-javaagent:%APP_BASE%jolokia-agent.jar=host=0.0.0.0,port=%JOLOKIA_PORT%,agentId=%AGENT_ID%
+  set JOLOKIA_ARGS=-javaagent:%APP_BASE%\jolokia-agent.jar=host=0.0.0.0,port=%JOLOKIA_PORT%,agentId=%AGENT_ID%
 )
 
 rem set JVM_DEBUG_ARGS="%JVM_DEBUG_ARGS%"
@@ -185,11 +186,12 @@ goto :USAGE
   start /min "%APP_BASENAME%" %RUN_COMMAND% 1>> %APP_CONSOLE_OUT% 2>> %APP_CONSOLE_ERR%
 
   rem see if we got started
-  timeout /T 2 > NUL
+  rem need to use ping as timeout causing issue when being controlled from Java/Jube
+  ping -n 2 127.0.0.1 > NUL
   for /F "tokens=2 delims= " %%A in ('tasklist /FI "WINDOWTITLE eq %APP_BASENAME%" /NH') do set PID=%%A
   if "%PID%" == "No" (
-     echo Could not start %SERVICE_NAME%
-     goto :END1
+    echo Could not start %SERVICE_NAME%
+    goto :END1
   )
   echo %SERVICE_NAME% is now running: PID=%PID%
 
@@ -222,7 +224,7 @@ goto :USAGE
       goto :END
     )
     rem sleep for 1 second
-    timeout /T 1 /NOBREAK > NUL
+    ping -n 1 127.0.0.1 > NUL
   )
 
   echo Could not gracefully stop %SERVICE_NAME% with PID=%pid% within %STOP_TIMEOUT% second(s)
@@ -272,7 +274,10 @@ goto :USAGE
 
 
 :END1
-set ERROR_CODE=1
+rem exit with error code 1
+endlocal
+exit /B 1
 
 :END
 endlocal
+

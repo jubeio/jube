@@ -21,19 +21,12 @@ import io.fabric8.utils.Processes;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static org.apache.commons.lang3.SystemUtils.IS_OS_UNIX;
-
 public class ProcessUtilsTest extends Assert {
 
     @Test
     public void shouldParseProcessesIds() {
-        if (IS_OS_UNIX) {
-            // When
-            List<Long> processIds = Processes.getProcessIds();
-
-            // Then
-            assertFalse(processIds.isEmpty());
-        }
+        List<Long> processIds = Processes.getProcessIds();
+        assertFalse(processIds.isEmpty());
     }
 
 }
