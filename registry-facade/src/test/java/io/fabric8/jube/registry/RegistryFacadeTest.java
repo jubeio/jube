@@ -5,26 +5,49 @@ import static org.junit.Assert.assertTrue;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import java.io.File;
 import java.util.Map;
 import java.util.Set;
 
 public class RegistryFacadeTest {
 
     protected static RegistryFacade facade;
+    private static boolean runTest;
 
     @BeforeClass
     public static void before() throws Exception {
+
         facade = new RegistryFacade();
-        facade.init();
+
+        // only run if there is a mavenIndex dir already
+        // otherwise the test takes very long time as it indexes maven central
+        File dir = facade.getMavenIndexerCacheDirectory();
+        if (dir != null && dir.exists() && dir.isDirectory()) {
+            String[] files = dir.list();
+            // there need to be more than the hawtio.lock file
+            if (files != null && files.length > 1) {
+                runTest = true;
+            }
+        }
+
+        if (runTest) {
+            facade.init();
+        }
     }
 
     @AfterClass
     public static void after() throws Exception {
-        facade.destroy();
+        if (runTest) {
+            facade.destroy();
+        }
     }
 
     @Test
     public void testSearch() throws Exception {
+        if (!runTest) {
+            return;
+        }
+
         RepositoriesDTO repositories = facade.search("karaf");
         // should get back something!
         assertTrue(!repositories.results.isEmpty());
@@ -32,6 +55,10 @@ public class RegistryFacadeTest {
 
     @Test
     public void testTags() throws Exception {
+        if (!runTest) {
+            return;
+        }
+
         RepositoriesDTO repositories = facade.search("karaf");
         assertTrue(!repositories.results.isEmpty());
         for (RepositoryDTO repository : repositories.results) {
@@ -43,6 +70,10 @@ public class RegistryFacadeTest {
 
     @Test
     public void testImageJson() throws Exception {
+        if (!runTest) {
+            return;
+        }
+
         RepositoriesDTO repositories = facade.search("karaf");
         assertTrue(!repositories.results.isEmpty());
         for (RepositoryDTO repository : repositories.results) {

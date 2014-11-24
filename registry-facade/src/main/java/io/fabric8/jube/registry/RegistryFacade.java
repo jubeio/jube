@@ -1,6 +1,6 @@
 package io.fabric8.jube.registry;
 
-
+import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
@@ -25,7 +25,10 @@ public class RegistryFacade {
     MavenIndexerFacade mavenIndexerFacade = new MavenIndexerFacade();
 
     public RegistryFacade() {
+    }
 
+    public File getMavenIndexerCacheDirectory() {
+        return mavenIndexerFacade.getCacheDirectory();
     }
 
     @PostConstruct
@@ -33,7 +36,7 @@ public class RegistryFacade {
         try {
             mavenIndexerFacade.init();
         } catch (Exception e) {
-            e.printStackTrace();
+            LOG.warn("Error initializing MavenIndexer due " + e.getMessage() + ". This exception is ignored.", e);
         }
     }
 
@@ -42,7 +45,7 @@ public class RegistryFacade {
         try {
             mavenIndexerFacade.destroy();
         } catch (Exception e) {
-            e.printStackTrace();
+            LOG.debug("Error destroying MavenIndexer due " + e.getMessage() + ". This exception is ignored.", e);
         }
     }
 
