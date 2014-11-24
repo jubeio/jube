@@ -92,8 +92,8 @@
     <maven.compiler.argument.source>${maven.compiler.source}</maven.compiler.argument.source>
 
     <maven.enforcer.version>3.1.1</maven.enforcer.version>
-    <fabric8.version>2.0.8</fabric8.version>
-    <hawtio.version>1.4.36</hawtio.version>
+    <fabric8.version>2.0.9</fabric8.version>
+    <hawtio.version>1.4.37</hawtio.version>
     <jetty9.version>9.1.5.v20140505</jetty9.version>
     <karaf.version>2.4.0</karaf.version>
     <tomcat.version>8.0.14</tomcat.version>
