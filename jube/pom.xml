@@ -239,7 +239,7 @@
         <configuration>
           <image>fabric8/java</image>
           <mergeData>true</mergeData>
-          <assemblyDescriptorRef>artifact-with-dependencies</assemblyDescriptorRef>
+          <assemblyDescriptor>src/main/resources/assemblies/jube.xml</assemblyDescriptor>
           <env>
             <MAIN>io.fabric8.jube.main.Main</MAIN>
           </env>
@@ -277,6 +277,10 @@
         <groupId>io.fabric8.jube</groupId>
         <artifactId>jube-maven-plugin</artifactId>
         <version>${project.version}</version>
+        <configuration>
+          <assemblyDescriptor>src/main/resources/assemblies/jube.xml</assemblyDescriptor>
+          <exportDir>/</exportDir>
+        </configuration>
         <executions>
           <execution>
             <goals>
@@ -302,7 +306,6 @@
               <mainClass>org.jboss.weld.environment.se.StartMain</mainClass>
               <includePluginDependencies>true</includePluginDependencies>
             </configuration>
-
             <dependencies>
               <dependency>
                 <groupId>io.fabric8.jube</groupId>

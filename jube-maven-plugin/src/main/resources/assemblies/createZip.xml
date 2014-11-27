@@ -24,7 +24,6 @@
   </formats>
 
   <fileSets>
-    <!-- Expanded Karaf Runtime -->
     <fileSet>
       <directory>target/jube</directory>
       <outputDirectory>/</outputDirectory>
