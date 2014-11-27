@@ -47,11 +47,6 @@ import org.jboss.weld.environment.servlet.Listener;
  */
 public final class Main {
 
-    private static final String JUBE_VERSION = System.getenv("JUBE_VERSION") != null ? System.getenv("JUBE_VERSION") : "LATEST";
-    private static final String FABRIC8_VERSION = System.getenv("FABRIC8_VERSION") != null ? System.getenv("FABRIC8E_VERSION") : "LATEST";
-
-    private static final String JUL_LOGGING_FORMAT = "%1$tY-%1$tm-%1$td %1$tH:%1$tM:%1$tS %4$s %2$s %5$s%6$s%n";
-
     private static final String LOGO =
             "\t________         ______\n" +
             "\t______(_)____  _____  /_ _____\n" +
@@ -70,7 +65,6 @@ public final class Main {
         try {
             System.setProperty("hawtio.authenticationEnabled", "false");
             System.setProperty("org.eclipse.jetty.util.log.class", Slf4jLog.class.getName());
-            System.setProperty("java.util.logging.SimpleFormatter.format", JUL_LOGGING_FORMAT);
             String port = Systems.getEnvVarOrSystemProperty("HTTP_PORT", "HTTP_PORT", "8585");
             Integer portNumber = Integer.parseInt(port);
 
