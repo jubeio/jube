@@ -63,8 +63,11 @@ public final class Main {
 
     public static void main(final String[] args) throws Exception {
         try {
+            // turn off annoying WELD noise
+            System.setProperty("org.jboss.weld.xml.disableValidating", "true");
             System.setProperty("hawtio.authenticationEnabled", "false");
             System.setProperty("org.eclipse.jetty.util.log.class", Slf4jLog.class.getName());
+            System.setProperty("java.util.logging.config.file", "jube-logging.properties");
             String port = Systems.getEnvVarOrSystemProperty("HTTP_PORT", "HTTP_PORT", "8585");
             Integer portNumber = Integer.parseInt(port);
 
