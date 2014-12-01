@@ -27,7 +27,6 @@ import java.util.concurrent.Executor;
 
 import io.fabric8.jube.process.support.command.Command;
 import io.fabric8.jube.process.support.command.CommandFailedException;
-import io.fabric8.jube.util.FilesHelper;
 
 /**
  * The configuration DTO stored as JSON so that the system can be restarted and remember how to run & control a managed process
@@ -71,7 +70,7 @@ public class ProcessConfig implements Serializable {
     }
 
     /**
-     * Converts the command name to the operating system specific commadn that should be used.
+     * Converts the command name to the operating system specific command that should be used.
      */
     protected String toCommand(String commandName) {
         if (isWindows()) {
