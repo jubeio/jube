@@ -385,8 +385,22 @@ public final class NodeHelper {
             return;
         }
         ProcessController controller = installation.getController();
-        controller.kill();
-        controller.uninstall();
+        // try graceful to stop first, then kill afterwards
+        try {
+            controller.stop();
+        } catch (Exception e) {
+            LOG.warn("Error during stopping container. Will now attempt to forcibly kill the container.", e);
+        }
+        try {
+            controller.kill();
+        } catch (Exception e) {
+            LOG.warn("Error during killing container. Will now attempt to uninstall the container.", e);
+        }
+        try {
+            controller.uninstall();
+        } catch (Exception e) {
+
+        }
         model.deletePod(pod.getId());
     }
 
