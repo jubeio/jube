@@ -19,8 +19,14 @@ package io.fabric8.jube;
 
 /**
  */
-public class Statuses {
+public final class Statuses {
+
     public static final String WAITING = "Waiting";
     public static final String TERMINATED = "Terminated";
     public static final String RUNNING = "Running";
+
+    private Statuses() {
+        // no public ctr
+    }
+
 }

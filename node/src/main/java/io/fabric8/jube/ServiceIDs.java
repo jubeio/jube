@@ -19,7 +19,13 @@ package io.fabric8.jube;
 
 /**
  */
-public class ServiceIDs {
+public final class ServiceIDs {
+
     public static final String KUBERNETES_SERVICE_ID = "kubernetes";
     public static final String KUBERNETES_RO_SERVICE_ID = "kubernetes-ro";
+
+    private ServiceIDs() {
+        // no public ctr
+    }
+
 }

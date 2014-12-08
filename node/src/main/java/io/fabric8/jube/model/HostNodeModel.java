@@ -26,6 +26,7 @@ import org.apache.zookeeper.CreateMode;
  * Represents the model for {@link HostNode} instances
  */
 public class HostNodeModel extends ZkCacheModel<HostNode> {
+
     @Inject
     public HostNodeModel(CuratorFramework curator) throws Exception {
         super(curator, JubeZKPaths.LOCAL_NODES, new HostNodeEntityModel());

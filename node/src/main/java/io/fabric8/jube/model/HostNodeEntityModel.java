@@ -19,6 +19,7 @@ package io.fabric8.jube.model;
  * Implements a model for working with {@link HostNode} objects
  */
 public class HostNodeEntityModel extends EntityModelSupport<HostNode> {
+
     public HostNodeEntityModel() {
         super(HostNode.class);
     }
