@@ -124,7 +124,7 @@ public final class Main {
             //context.addServlet(servletHolder, "/kubernetes/api/*");
             context.addServlet(WatchWebSocketServlet.class, "/api/*");
             //context.addServlet(WatchWebSocketServlet.class, "/kubernetes/api/*");
-            context.addServlet(new ServletHolder(new RootServlet()), "/");
+            //context.addServlet(new ServletHolder(new RootServlet()), "/");
 
             handlers.addHandler(context);
 
@@ -297,6 +297,9 @@ public final class Main {
                 System.out.println("adding web context path: /" + contextPath + " war: " + filePath);
             }
             WebAppContext webapp = new WebAppContext();
+            if ("hawtio".equals(contextPath)) {
+                contextPath = "";
+            }
             webapp.setContextPath("/" + contextPath);
             webapp.setWar("file://" + filePath);
             handlers.addHandler(webapp);
@@ -320,7 +323,7 @@ public final class Main {
         if (contextPath.startsWith("hawtio-swag")) {
             contextPath = "hawtio-swagger";
         } else if (contextPath.startsWith("hawtio-") || contextPath.startsWith("console-")) {
-            contextPath = "hawtio";
+            contextPath = "/";
         }
         return contextPath;
     }

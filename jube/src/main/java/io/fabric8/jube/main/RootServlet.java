@@ -21,16 +21,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.eclipse.jetty.util.URIUtil;
-
 public class RootServlet extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // only redirect if its / to hawtio
-        if (req.getRequestURI().equals("/")) {
-            String url = URIUtil.addPaths(req.getRequestURI(), "hawtio");
-            resp.sendRedirect(url);
-        }
+        // do not redirect as hawtio v2 console do not support using /hawtio as context-path yet
     }
 }
