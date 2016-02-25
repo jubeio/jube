@@ -25,9 +25,8 @@ public class ContextPathTest {
 
     @Test
     public void testContextPath() throws Exception {
-        assertContextPath("file:/projects/jube/app/target/jube/maven/hawtio-web-1.4.27.war!/WEB-INF/web.xml", "hawtio");
+        assertContextPath("file:/projects/jube/app/target/jube/maven/hawtio-web-1.4.27.war!/WEB-INF/web.xml", "/");
     }
-
 
     @Test
     public void testFilePath() throws Exception {
